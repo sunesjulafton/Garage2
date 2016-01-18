@@ -1,3 +1,10 @@
 ﻿$(document).ready(function () {
-    $('#sortTable').DataTable();
+    $('#sortTable').DataTable({
+        "order": [],
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false,
+        }]
+    });
 });
+
