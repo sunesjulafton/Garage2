@@ -115,6 +115,31 @@ namespace Garage2.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string regNumber)
+        {
+            if (!String.IsNullOrEmpty(regNumber))
+            {
+                var list =
+                    db.Vehicles.Where(v => v.RegNum.Contains(regNumber))
+                        .Select(v => v)
+                        .ToList();
+                if (list.Count() == 1)
+                {
+                    Vehicle vehicle = list[0];
+                    return View("Details", vehicle);
+                }
+
+            }
+            return View(regNumber + " hittades inte.");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
