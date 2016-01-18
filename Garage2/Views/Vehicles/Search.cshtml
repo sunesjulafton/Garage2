@@ -1,0 +1,17 @@
+﻿@model Garage2.Controllers.Vehicle
+
+@{
+    ViewBag.Title = "Sök";
+}
+
+<h2>Sök på registreringsnummer</h2>
+
+@using (Html.BeginForm()) { 
+<p>
+    Registreringsnummer @Html.TextBox("regNumber")
+    <input type="submit" value="Search" />
+</p>
+}
+<p>
+    @Html.ActionLink("Tillbaka","Index")
+</p>   

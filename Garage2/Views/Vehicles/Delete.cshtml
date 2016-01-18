@@ -1,12 +1,12 @@
 ﻿@model Garage2.Controllers.Vehicle
 
 @{
-    ViewBag.Title = "Radera";
+    ViewBag.Title = "Kör ut";
 }
 
 <h2>@ViewBag.Title</h2>
 
-<h3>Är du säker på att du vill radera detta fordon?</h3>
+<h3>Är du säker på att du vill köra ut detta fordon?</h3>
 <div>
     <h4>Fordon</h4>
     <hr />
@@ -57,7 +57,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Kör ut" class="btn btn-default" /> |
             @Html.ActionLink("Tillbaka", "Index")
         </div>
     }
