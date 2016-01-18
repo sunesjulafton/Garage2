@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Garage2.Controllers
+namespace Garage2.Models
 {
     public class Vehicle
     {
@@ -22,6 +22,9 @@ namespace Garage2.Controllers
 
         [Display(Name = "Modell")]
         public string Model { get; set; }
+
+        [Display(Name = "Färg")]
+        public string Color { get; set; }
 
         [Display(Name = "Antal hjul")]
         public int WheelCount { get; set; }

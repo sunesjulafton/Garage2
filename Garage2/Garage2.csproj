@@ -121,6 +121,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601180845290_InitialCreate.cs" />
+    <Compile Include="Migrations\201601180845290_InitialCreate.Designer.cs">
+      <DependentUpon>201601180845290_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601181507254_Added color.cs" />
+    <Compile Include="Migrations\201601181507254_Added color.Designer.cs">
+      <DependentUpon>201601181507254_Added color.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\GarageContext.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
@@ -332,6 +341,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601180845290_InitialCreate.resx">
+      <DependentUpon>201601180845290_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601181507254_Added color.resx">
+      <DependentUpon>201601181507254_Added color.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

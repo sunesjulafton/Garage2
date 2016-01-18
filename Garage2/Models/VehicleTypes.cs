@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Garage2.Controllers
+namespace Garage2.Models
 {
     public enum VehicleTypes
     {
