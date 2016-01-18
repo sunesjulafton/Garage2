@@ -31,11 +31,11 @@ namespace Garage2.Migrations
 
             context.Vehicles.AddOrUpdate(
                 v => v.RegNum,
-                new Vehicle { Type = VehicleTypes.Car, RegNum = "ABC123", Make = "Volvo", Model = "240", WheelCount = 4 },
-                new Vehicle { Type = VehicleTypes.Aeroplane, RegNum = "FLY234", Make = "Cessna", Model = "172", WheelCount = 3 },
-                new Vehicle { Type = VehicleTypes.Boat, RegNum = "BOT345", Make = "Scandica", Model = "410", WheelCount = 0 },
-                new Vehicle { Type = VehicleTypes.Bus, RegNum = "BUS456", Make = "Scania", Model = "Irizar i6", WheelCount = 4 },
-                new Vehicle { Type = VehicleTypes.Motorcycle, RegNum = "MOT567", Make = "Yamaha", Model = "DT125", WheelCount = 2 }
+                new Vehicle { Type = VehicleTypes.Car, RegNum = "ABC123", Make = "Volvo", Model = "240", Color = "Röd", WheelCount = 4 },
+                new Vehicle { Type = VehicleTypes.Aeroplane, RegNum = "FLY234", Make = "Cessna", Model = "172", Color = "Vit", WheelCount = 3 },
+                new Vehicle { Type = VehicleTypes.Boat, RegNum = "BOT345", Make = "Scandica", Model = "410", Color = "Vit", WheelCount = 0 },
+                new Vehicle { Type = VehicleTypes.Bus, RegNum = "BUS456", Make = "Scania", Model = "Irizar i6", Color = "Grön", WheelCount = 4 },
+                new Vehicle { Type = VehicleTypes.Motorcycle, RegNum = "MOT567", Make = "Yamaha", Model = "DT125", Color = "Svart", WheelCount = 2 }
                 );
         }
     }

@@ -4,7 +4,7 @@
     ViewBag.Title = "Garage 2.0";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Parkerade fordon</h2>
 
 <p>
     @Html.ActionLink("Parkera fordon", "Create")
@@ -23,6 +23,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
             </th>
             <th class="no-sort"></th>
         </tr>
@@ -44,6 +47,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td>
                     @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
