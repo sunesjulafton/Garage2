@@ -130,6 +130,7 @@
       <DependentUpon>201601181507254_Added color.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SearchString.cs" />
     <Compile Include="Models\GarageContext.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
