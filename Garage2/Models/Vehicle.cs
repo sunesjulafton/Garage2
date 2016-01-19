@@ -31,5 +31,6 @@ namespace Garage2.Models
 
         [Display(Name = "Ankomsttid")]
         public DateTime ArrivalTime { get; set; }
+        
     }
 }

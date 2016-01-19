@@ -50,8 +50,12 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Type,RegNum,Make,Model,Color,WheelCount")] Vehicle vehicle)
         {
+
+
             if (ModelState.IsValid)
             {
+                vehicle.ArrivalTime = DateTime.Now;
+                vehicle.RegNum = vehicle.RegNum.ToUpper();
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
