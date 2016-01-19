@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.Models;
 using Garage2.Configuration;
+using System.Globalization;
 
 namespace Garage2.Controllers
 {
@@ -166,9 +167,10 @@ namespace Garage2.Controllers
 
             TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
             ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
-            ViewBag.TotalPrice = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
-            
-            
+            //ViewBag.TotalPrice = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
+            var price = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
+            ViewBag.TotalPrice = price.ToString("C",
+                  CultureInfo.CreateSpecificCulture("sv-SE"));
 
             return View();
         }
