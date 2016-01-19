@@ -7,13 +7,13 @@ namespace Garage2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class datetime : IMigrationMetadata
+    public sealed partial class AddedRegistrationLength : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(datetime));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedRegistrationLength));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601191006583_datetime"; }
+            get { return "201601191542313_AddedRegistrationLength"; }
         }
         
         string IMigrationMetadata.Source

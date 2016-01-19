@@ -130,9 +130,13 @@
     <Compile Include="Migrations\201601181507254_Added color.Designer.cs">
       <DependentUpon>201601181507254_Added color.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601191006583_datetime.cs" />
-    <Compile Include="Migrations\201601191006583_datetime.Designer.cs">
-      <DependentUpon>201601191006583_datetime.cs</DependentUpon>
+    <Compile Include="Migrations\201601191537050_AddedAnnotation.cs" />
+    <Compile Include="Migrations\201601191537050_AddedAnnotation.Designer.cs">
+      <DependentUpon>201601191537050_AddedAnnotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601191542313_AddedRegistrationLength.cs" />
+    <Compile Include="Migrations\201601191542313_AddedRegistrationLength.Designer.cs">
+      <DependentUpon>201601191542313_AddedRegistrationLength.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SearchString.cs" />
@@ -356,8 +360,11 @@
     <EmbeddedResource Include="Migrations\201601181507254_Added color.resx">
       <DependentUpon>201601181507254_Added color.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601191006583_datetime.resx">
-      <DependentUpon>201601191006583_datetime.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601191537050_AddedAnnotation.resx">
+      <DependentUpon>201601191537050_AddedAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601191542313_AddedRegistrationLength.resx">
+      <DependentUpon>201601191542313_AddedRegistrationLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
