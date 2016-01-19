@@ -135,6 +135,7 @@
       <DependentUpon>201601191006583_datetime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SearchString.cs" />
     <Compile Include="Models\GarageContext.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />

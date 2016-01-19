@@ -133,22 +133,25 @@ namespace Garage2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string regNumber)
+        public ActionResult Search([Bind(Include = "RegNum")] SearchString str)
         {
-            if (!String.IsNullOrEmpty(regNumber))
+            if (ModelState.IsValid)
             {
-                var list =
-                    db.Vehicles.Where(v => v.RegNum.Contains(regNumber))
-                        .Select(v => v)
-                        .ToList();
-                if (list.Count() == 1)
+                if (!string.IsNullOrEmpty(str.RegNum))
                 {
-                    Vehicle vehicle = list[0];
-                    return View("Details", vehicle);
+                    var list =
+                        db.Vehicles.Where(v => v.RegNum.Contains(str.RegNum))
+                            .Select(v => v)
+                            .ToList();
+                    if (list.Count() == 1)
+                    {
+                        Vehicle vehicle = list[0];
+                        return View("Details", vehicle);
+                    }
                 }
-
             }
-            return View(regNumber + " hittades inte.");
+            ModelState.AddModelError("Error", str.RegNum + " hittades inte.");
+            return View("Search");
         }
 
 
