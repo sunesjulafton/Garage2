@@ -1,4 +1,4 @@
-Övning 12: Garage 2.0 - Återkomsten
+<pre>Övning 12: Garage 2.0 - Återkomsten
 Garaget kommer till webben i ASP.NET MVC! Då detta är den första MVC-baserade
 garageversionen så kommer vi att fokusera på gränssnitt och funktionalitet.
 Uppgiftsbeskrivningen är skriven i prioriteringsordning. De första punkterna är
@@ -48,3 +48,4 @@ in/ut-checkningstid, total parkeringsperiod och pris automatiskt efter att en bi
 ut. Om tid finns, gör denna utskriftsvänlig. Ni sätter ert eget pris, men 60kr/timme ger er
 fina avrundningar till att börja med.
 Lycka till!
+</pre>
