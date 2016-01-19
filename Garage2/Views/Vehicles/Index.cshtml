@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
             <th class="no-sort"></th>
         </tr>
     </thead>
@@ -50,6 +53,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalTime)
                 </td>
                 <td>
                     @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
