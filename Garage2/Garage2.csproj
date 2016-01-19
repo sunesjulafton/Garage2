@@ -117,6 +117,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Configuration\appSettings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -128,6 +129,10 @@
     <Compile Include="Migrations\201601181507254_Added color.cs" />
     <Compile Include="Migrations\201601181507254_Added color.Designer.cs">
       <DependentUpon>201601181507254_Added color.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601191006583_datetime.cs" />
+    <Compile Include="Migrations\201601191006583_datetime.Designer.cs">
+      <DependentUpon>201601191006583_datetime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\GarageContext.cs" />
@@ -331,6 +336,7 @@
     <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\Vehicles\Search.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Vehicles\Receipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -348,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601181507254_Added color.resx">
       <DependentUpon>201601181507254_Added color.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601191006583_datetime.resx">
+      <DependentUpon>201601191006583_datetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

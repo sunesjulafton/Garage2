@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Garage2.Models;
+using Garage2.Configuration;
 
 namespace Garage2.Controllers
 {
@@ -107,12 +108,22 @@ namespace Garage2.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, bool receipt = false)
         {
+            
             Vehicle vehicle = db.Vehicles.Find(id);
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            if ( receipt == false)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["vehicle"] = vehicle;
+                return RedirectToAction("Receipt");
+            }
+
         }
 
         [HttpGet]
@@ -138,6 +149,25 @@ namespace Garage2.Controllers
 
             }
             return View(regNumber + " hittades inte.");
+        }
+
+
+        // GET: Vehicles/Receipt/5
+
+        public ActionResult Receipt()
+        {
+            Vehicle v = TempData["vehicle"] as Vehicle;
+            ViewBag.RegNum = v.RegNum;
+            ViewBag.ArrivalTime = v.ArrivalTime;
+            ViewBag.Departure = DateTime.Now;
+
+            TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
+            ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
+            ViewBag.TotalPrice = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
+            
+            
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

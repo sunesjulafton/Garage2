@@ -49,8 +49,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
+            <input type="checkbox" value="true" name="receipt"/>
+            <label>Kvitto på parkering</label><br />
             <input type="submit" value="Kör ut" class="btn btn-default" /> |
             @Html.ActionLink("Tillbaka", "Index")
         </div>
     }
+
+
+  
 </div>
