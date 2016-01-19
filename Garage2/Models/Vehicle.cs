@@ -28,5 +28,8 @@ namespace Garage2.Models
 
         [Display(Name = "Antal hjul")]
         public int WheelCount { get; set; }
+
+        [Display(Name = "Ankomsttid")]
+        public DateTime ArrivalTime { get; set; }
     }
 }
