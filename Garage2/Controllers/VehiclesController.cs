@@ -54,10 +54,22 @@ namespace Garage2.Controllers
 
             if (ModelState.IsValid)
             {
-                vehicle.ArrivalTime = DateTime.Now;
-                vehicle.RegNum = vehicle.RegNum.ToUpper();
-                db.Vehicles.Add(vehicle);
-                db.SaveChanges();
+                var list =
+                    db.Vehicles.Where(v => v.RegNum.Contains(vehicle.RegNum) && v.Type == vehicle.Type)
+                        .Select(v => v)
+                        .ToList();
+                if (list.Count() == 0)
+                {
+                    vehicle.ArrivalTime = DateTime.Now;
+                    vehicle.RegNum = vehicle.RegNum.ToUpper();
+                    db.Vehicles.Add(vehicle);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ModelState.AddModelError("RegNum", "Fordon är redan parkerat");
+                    return View("Create");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -153,9 +165,15 @@ namespace Garage2.Controllers
                         Vehicle vehicle = list[0];
                         return View("Details", vehicle);
                     }
+                    else if (list.Count > 1) {
+                        return View("Index", list);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("RegNum", "Fordonet hittades inte.");
+                    }
                 }
             }
-            ModelState.AddModelError("Error", str.RegNum + " hittades inte.");
             return View("Search");
         }
 
