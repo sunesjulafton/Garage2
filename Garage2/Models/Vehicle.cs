@@ -16,8 +16,8 @@ namespace Garage2.Models
         public VehicleTypes Type { get; set; }
 
         [Display(Name = "Registreringsnummer")]
-        [RegularExpression(@"^[A-Z]{3}(\d{3})$")]
-        [Required]
+        [RegularExpression(@"^[A-Za-z]{3}(\d{3})$", ErrorMessage="Felaktigt format. Förväntade AAA999")]
+        [Required(ErrorMessage = "Registrerinsnummer saknas")]
         [StringLength(6)]
         public string RegNum { get; set; }
 
@@ -34,7 +34,7 @@ namespace Garage2.Models
         public string Color { get; set; }
 
         [Display(Name = "Antal hjul")]
-        [Required]
+        [Required(ErrorMessage = "Antal hjul saknas")]
         public int WheelCount { get; set; }
 
         [Display(Name = "Ankomsttid")]

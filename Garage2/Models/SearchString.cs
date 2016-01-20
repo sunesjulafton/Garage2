@@ -8,8 +8,9 @@ namespace Garage2.Models
 {
     public class SearchString
     {
-        [Required]
-        [RegularExpression (@"^[a-zA-Z]{3}(\d{3})$")]
+        [Display(Name = "Registreringsnummer")]
+        [Required (ErrorMessage = "Inmatning saknas")]
+        [RegularExpression(@"^[a-zA-Z]{3}(\d{3})$", ErrorMessage = "Felaktigt format. Förväntade AAA999")]
         public string RegNum { get; set; }
     }
 }

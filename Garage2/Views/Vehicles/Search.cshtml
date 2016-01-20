@@ -1,44 +1,36 @@
 ﻿@model Garage2.Models.SearchString
-
 @{
     ViewBag.Title = "Sök";
 }
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery.validate.js" ></script>
-<script>
-    $(document).ready(function () {
-        $('#button-submit').click(function () {
-            var hasError = false;
-            var regex = /^[a-zA-Z]{3}(\d{3})$/;
-            var regNumVal = $('#RegNum').val();
-            $('.error').hide();
-            if (regNumVal == '') {
-                $('#button-submit').after('<span class="error" style="color : red">&nbsp;Värde saknas [AAA999].</span>');
-                return false;
-            }
-            else if (!regex.test(regNumVal)) {
-                $('#button-submit').after('<span class="error" style="color : red">&nbsp;Förväntat format: AAA999.</span>');
-                return false;
-            }
-            return true;
-        });
-
-        $('#RegNum').focusin(function () {
-            if($('#RegNum').is(':focus')) $('.error').hide();
-        });
-    });
-</script>
-
 <h2>Sök på registreringsnummer</h2>
+@using (Html.BeginForm("Search", "Vehicles", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Search", "Vehicles", FormMethod.Post)) {
-<legend>Registreringsnummer</legend>    
-<p>
-    @Html.TextBoxFor(m => m.RegNum)
-    @Html.ValidationMessageFor(m => m.RegNum)
-    <input id="button-submit"type="submit" value="Sök" />
-</p>
+    <div class="form-horizontal">
+        <h4>Fordon</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Spara" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
-<p>
-    @Html.ActionLink("Tillbaka","Index")
-</p>
+<div>
+    @Html.ActionLink("Tillbaka", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
