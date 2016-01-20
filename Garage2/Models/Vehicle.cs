@@ -35,6 +35,7 @@ namespace Garage2.Models
 
         [Display(Name = "Antal hjul")]
         [Required(ErrorMessage = "Antal hjul saknas")]
+        [Range(0, 9999)]
         public int WheelCount { get; set; }
 
         [Display(Name = "Ankomsttid")]
