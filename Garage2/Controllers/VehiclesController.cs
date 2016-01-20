@@ -54,11 +54,43 @@ namespace Garage2.Controllers
 
             if (ModelState.IsValid)
             {
+                bool valid = true;
+                // Check if the same duplicate reg numbers exist with the same type
                 var list =
                     db.Vehicles.Where(v => v.RegNum.Contains(vehicle.RegNum) && v.Type == vehicle.Type)
                         .Select(v => v)
                         .ToList();
-                if (list.Count() == 0)
+                if (list.Count() > 0)
+                {
+                    valid = false;
+                }
+
+                // Check if duplicates exist within a category of vehicles
+                if ((vehicle.Type == VehicleTypes.Bus) ||
+                    (vehicle.Type == VehicleTypes.Car) ||
+                    (vehicle.Type == VehicleTypes.Motorcycle))
+                {
+                    list =
+                        db.Vehicles.Where(v => v.RegNum.Contains(vehicle.RegNum))
+                            .Select(v => v)
+                            .ToList();
+
+                    if (list.Count > 0)
+                    {
+                        foreach (var item in list)
+                        {
+                            if ((item.Type == VehicleTypes.Bus) ||
+                                (item.Type == VehicleTypes.Car) ||
+                                (item.Type == VehicleTypes.Motorcycle))
+                            {
+                                valid = false;
+                            }
+                        }
+                    }
+
+                }
+ 
+                if (valid)
                 {
                     vehicle.ArrivalTime = DateTime.Now;
                     vehicle.RegNum = vehicle.RegNum.ToUpper();
@@ -127,11 +159,11 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id, bool receipt = false)
         {
-            
+
             Vehicle vehicle = db.Vehicles.Find(id);
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
-            if ( receipt == false)
+            if (receipt == false)
             {
                 return RedirectToAction("Index");
             }
@@ -165,7 +197,8 @@ namespace Garage2.Controllers
                         Vehicle vehicle = list[0];
                         return View("Details", vehicle);
                     }
-                    else if (list.Count > 1) {
+                    else if (list.Count > 1)
+                    {
                         return View("Index", list);
                     }
                     else
@@ -189,8 +222,7 @@ namespace Garage2.Controllers
 
             TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
             ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
-            //ViewBag.TotalPrice = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
-            var price = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
+            var price = Math.Floor(Duration.TotalMinutes * appSettings.PricePerMinute());
             ViewBag.TotalPrice = price.ToString("C",
                   CultureInfo.CreateSpecificCulture("sv-SE"));
 
