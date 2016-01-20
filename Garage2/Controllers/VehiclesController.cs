@@ -19,7 +19,14 @@ namespace Garage2.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.ToList());
+            IndexModel model = new IndexModel(db.Vehicles.ToList(), new SortElement());
+           
+
+            //var data = db.Vehicles.ToList();
+
+            //var tupleModel = new Tuple<List<Vehicle>, SortElement>(data, new SortElement());
+
+            return View(model);
         }
 
         // GET: Vehicles/Details/5
