@@ -128,7 +128,7 @@ namespace Garage2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegNum,Make,Model,Color,WheelCount")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "Id,Type,RegNum,Make,Model,Color,WheelCount, ArrivalTime")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -222,8 +222,7 @@ namespace Garage2.Controllers
 
             TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
             ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
-            //ViewBag.TotalPrice = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
-            var price = Math.Ceiling(Duration.TotalMinutes * appSettings.PricePerMinute());
+            var price = Math.Floor(Duration.TotalMinutes * appSettings.PricePerMinute());
             ViewBag.TotalPrice = price.ToString("C",
                   CultureInfo.CreateSpecificCulture("sv-SE"));
 
