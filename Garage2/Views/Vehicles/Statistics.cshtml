@@ -1,0 +1,44 @@
+﻿@model Garage2.Models.Vehicle
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Statistics</h2>
+
+<strong>Antal hjul i garaget: </strong>@ViewBag.Tires <br />
+<hr />
+
+<strong>Antal fordon i garaget</strong>
+<ul class="list-unstyled">
+    @foreach (var item in ViewBag.Types)
+    {
+        <li>
+            @item.Key: @item.Value
+        </li>
+    }
+</ul>
+
+<hr />
+
+<strong>Antal färger i garaget</strong>
+<ul class="list-unstyled">
+    @foreach (var item in ViewBag.Colors)
+    {
+        <li>
+            @item.Key: @item.Value
+        </li>
+    }
+</ul>
+
+<hr />
+
+<strong>Antal märken i garaget</strong>
+<ul class="list-unstyled">
+    @foreach (var item in ViewBag.Makes)
+    {
+        <li>
+            @item.Key: @item.Value
+        </li>
+    }
+</ul>
