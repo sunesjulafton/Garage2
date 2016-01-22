@@ -16,17 +16,59 @@ namespace Garage2.Controllers
     {
         private GarageContext db = new GarageContext();
 
-        // GET: Vehicles
+        //// GET: Vehicles
+        //public ActionResult Index()
+        //{
+        //    //IndexModel model = new IndexModel(db.Vehicles.ToList(), new SortElement());
+
+
+        //    //var data = db.Vehicles.ToList();
+
+        //    //var tupleModel = new Tuple<List<Vehicle>, SortElement>(data, new SortElement());
+
+        //    return View(db.Vehicles.ToList());
+        //}
+
+
         public ActionResult Index()
         {
-            IndexModel model = new IndexModel(db.Vehicles.ToList(), new SortElement());
-           
+            //ViewBag.NameSortParm = sortOrder == "RegNum" ? "RegNum_desc" : "RegNum";
 
-            //var data = db.Vehicles.ToList();
+            //var param = 
+            var param = Request["sortOrder"];
+            var list = db.Vehicles.Select(v => v);
 
-            //var tupleModel = new Tuple<List<Vehicle>, SortElement>(data, new SortElement());
-
-            return View(model);
+            if (param != null) { 
+                switch (param.ToString())
+                {
+                    case "RegNum":
+                        list = list.OrderBy(v => v.RegNum);
+                        break;
+                    case "Type":
+                        list = list.OrderBy(v => v.Type.ToString());
+                        break;
+                    case "Make":
+                        list = list.OrderBy(v => v.Make);
+                        break;
+                    case "Model":
+                        list = list.OrderBy(v => v.Model);
+                        break;
+                    case "Color":
+                        list = list.OrderBy(v => v.Color);
+                        break;
+                    case "ArrivalTime":
+                        list = list.OrderBy(v => v.ArrivalTime);
+                        break;
+                    case "RegNum_desc":
+                        list = list.OrderByDescending(v => v.RegNum);
+                        break;
+                    default:
+                        list = list.OrderBy(v => v.RegNum);
+                        break;
+                }
+                ViewBag.SelectedOrder = param.ToString();
+            }
+            return View(list.ToList()   );
         }
 
         // GET: Vehicles/Details/5
@@ -96,7 +138,7 @@ namespace Garage2.Controllers
                     }
 
                 }
- 
+
                 if (valid)
                 {
                     vehicle.ArrivalTime = DateTime.Now;

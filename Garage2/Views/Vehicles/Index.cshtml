@@ -1,4 +1,4 @@
-﻿@model Garage2.Models.IndexModel
+﻿@model IEnumerable<Garage2.Models.Vehicle>
 
 @{
     ViewBag.Title = "Garage 2.0";
@@ -13,29 +13,29 @@
     <thead>
         <tr>
             <th>
-                @Model.List.
+                @Html.DisplayNameFor(model => model.RegNum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.List[0].RegNum)
+                @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.List[0].Make)
+                @Html.DisplayNameFor(model => model.Make)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.List[0].Model)
+                @Html.DisplayNameFor(model => model.Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.List[0].Color)
+                @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.List[0].ArrivalTime)
+                @Html.DisplayNameFor(model => model.ArrivalTime)
             </th>
             <th class="no-sort"></th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var item in Model.List)
+        @foreach (var item in Model)
         {
 
             <tr>
@@ -70,25 +70,36 @@
 
 
 <div id="smallView">
-    @Html.EnumDropDownListFor(model => model.Elements.Attributes, htmlAttributes: new { @class = "form-control" })
+    <form method="get">
+        <select name="sortOrder" onchange="this.form.submit();">
+            <option value="RegNum">Registreringsnummer</option>
+            <option value="Type">Fordonstyp</option>
+            <option value="Make">Märke</option>
+            <option value="Model">Modell</option>
+            <option value="Color">Färg</option>
+            <option value="ArrivalTime">Ankomstid</option>
+        </select>
+    </form>
+    @*@Html.EnumDropDownListFor(model => model.Elements, htmlAttributes: new { @class = "form-control" })*@
     @*@Html.ValidationMessageFor(model => model.VehicleAttributes, "", new { @class = "text-danger" })*@
-    
-    
-    @foreach (var item in Model.List)
+
+
+    @foreach (var item in Model)
     {
         <div class="well well-sm">
             <ul class="list-unstyled">
-                <li><strong>@Html.DisplayNameFor(model => item.RegNum): </strong>@Html.DisplayFor(modelItem => item.RegNum)</li>
-                <li><strong>@Html.DisplayNameFor(model => item.Type):  </strong>@Html.DisplayFor(modelItem => item.Type)</li>
-                <li><strong>@Html.DisplayNameFor(model => item.Make):  </strong>@Html.DisplayFor(modelItem => item.Make)</li>
-                <li><strong>@Html.DisplayNameFor(model => item.Model):  </strong>@Html.DisplayFor(modelItem => item.Model)</li>
-                <li><strong>@Html.DisplayNameFor(model => item.Color):  </strong>@Html.DisplayFor(modelItem => item.Color)</li>
-                <li><strong>@Html.DisplayNameFor(model => item.ArrivalTime):  </strong>@Html.DisplayFor(modelItem => item.ArrivalTime)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.RegNum): </strong>@Html.DisplayFor(modelItem => item.RegNum)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Type):  </strong>@Html.DisplayFor(modelItem => item.Type)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Make):  </strong>@Html.DisplayFor(modelItem => item.Make)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Model):  </strong>@Html.DisplayFor(modelItem => item.Model)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Color):  </strong>@Html.DisplayFor(modelItem => item.Color)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.ArrivalTime):  </strong>@Html.DisplayFor(modelItem => item.ArrivalTime)</li>
             </ul>
             @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
             @Html.ActionLink("Kör ut", "Delete", new { id = item.Id })
         </div>
+
     }
 </div>
 
