@@ -1,7 +1,10 @@
+#define RANDOM_GENERATOR
 namespace Garage2.Migrations
 {
     using Garage2.Models;
+    using Garage2.Utilities;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,6 +17,75 @@ namespace Garage2.Migrations
             ContextKey = "Garage2.Models.GarageContext";
         }
 
+#if RANDOM_GENERATOR
+
+        protected override void Seed(Garage2.Models.GarageContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
+
+            int count = 1000;
+            RandomGenerator randGen = new RandomGenerator();
+
+            List<Tuple<string, string>> aeroplaneModels = randGen.AeroplaneModels(count / 5);
+            List<Tuple<string, string>> boatModels = randGen.BoatModels(count / 5);
+            List<Tuple<string, string>> busModels = randGen.BusModels(count / 5);
+            List<Tuple<string, string>> carModels = randGen.CarModels(count / 5);
+            List<Tuple<string, string>> motorcykleModels = randGen.MotorcykleModels(count / 5);
+            List<string> regNums = randGen.RegNumbers(count);
+            List<string> colors = randGen.Colors(count);
+            List<int> wheelCounts = randGen.Integers(count, 0, 18);
+            List<DateTime> arrivalTimes = randGen.DatesAndTimes(count, new DateTime(2015,10,1,0,0,0), DateTime.Now);
+
+            Dictionary<string, List<Tuple<string, string>>> models = new Dictionary<string, List<Tuple<string, string>>>();
+            models.Add("Aeroplane", aeroplaneModels);
+            models.Add("Boat", boatModels);
+            models.Add("Bus", busModels);
+            models.Add("Car", carModels);
+            models.Add("Motorcykle", motorcykleModels);
+
+            Dictionary<string, VehicleTypes> vehichleTypes = new Dictionary<string, VehicleTypes> {
+                { "Aeroplane", VehicleTypes.Aeroplane },
+                { "Boat", VehicleTypes.Boat },
+                { "Bus", VehicleTypes.Bus },
+                { "Car", VehicleTypes.Car },
+                { "Motorcykle", VehicleTypes.Motorcycle }
+            };
+
+            string[] keys = models.Keys.ToArray();
+
+            int i = 0;
+            foreach (string key in keys)
+            {
+                for (int j = 0; j < models[key].Count; i++, j++)
+                {
+                    context.Vehicles.AddOrUpdate(
+                        v => v.RegNum,
+                        new Vehicle {
+                            Type = vehichleTypes[key],
+                            RegNum = regNums[i],
+                            Make = models[key][j].Item1,
+                            Model = models[key][j].Item2,
+                            Color = colors[i],
+                            WheelCount = (key == "Boat" ? 0 : key == "Motorcykle" ? 2 : key == "Car" ? 4 : wheelCounts[i]),
+                            ArrivalTime = arrivalTimes[i]
+                        }
+                    );
+                }
+            }
+        }
+
+#else
         protected override void Seed(Garage2.Models.GarageContext context)
         {
             //  This method will be called after migrating to the latest version.
@@ -49,5 +121,6 @@ namespace Garage2.Migrations
                 new Vehicle { Type = VehicleTypes.Motorcycle, RegNum = "ORV687", Make = "Harley Davidson", Model = "Iron 883", Color = "Svart", WheelCount = 2, ArrivalTime = new DateTime(2015, 8, 3, 8, 2, 0) }
                 );
         }
+#endif
     }
 }
