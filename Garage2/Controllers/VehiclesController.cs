@@ -58,9 +58,6 @@ namespace Garage2.Controllers
                     case "ArrivalTime":
                         list = list.OrderBy(v => v.ArrivalTime);
                         break;
-                    case "RegNum_desc":
-                        list = list.OrderByDescending(v => v.RegNum);
-                        break;
                     default:
                         list = list.OrderBy(v => v.RegNum);
                         break;
@@ -98,8 +95,6 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Type,RegNum,Make,Model,Color,WheelCount")] Vehicle vehicle)
         {
-
-
             if (ModelState.IsValid)
             {
                 bool valid = true;
