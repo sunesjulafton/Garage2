@@ -3,6 +3,10 @@
     padding-bottom: 20px;
     background-image: url('/img/garageInterior.jpg');
     background-size: cover;
+    background-attachment: fixed;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-color: #DDDDDD;
 }
 
 /* Set padding to keep content from hitting the edges */
