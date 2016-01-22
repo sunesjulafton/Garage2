@@ -342,6 +342,7 @@
     <Content Include="Views\Vehicles\Search.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
     <Content Include="Views\Vehicles\Receipt.cshtml" />
+    <Content Include="Views\Vehicles\Statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

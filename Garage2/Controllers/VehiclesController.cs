@@ -278,6 +278,105 @@ namespace Garage2.Controllers
             return View();
         }
 
+        public ActionResult Statistics()
+        {
+            CountTiresInDb();
+            CountTypesInDb();
+            CountColorOfTypesInDb();
+            CountMakeInDb();
+            return View();
+        }
+
+
+        private void CountTypesInDb()
+        {
+            var model = db.Vehicles.ToList();
+            Dictionary<VehicleTypes, int> types = new Dictionary<VehicleTypes, int>();
+
+            foreach (Vehicle v in model)
+            {
+                if (types.ContainsKey(v.Type))
+                {
+                    types[v.Type] += 1;
+                }
+                else
+                {
+                    types.Add(v.Type, 1);
+                }
+            }
+            GetTypesWithZeroValue(types);
+            ViewBag.Types = types;
+        }
+
+        //Add vehicletypes that aint in the database and adds 0 as value
+        private static void GetTypesWithZeroValue(Dictionary<VehicleTypes, int> types)
+        {
+            var values = GetValues<VehicleTypes>();
+            foreach (VehicleTypes vt in values)
+            {
+                if (!types.ContainsKey(vt))
+                {
+                    types.Add(vt, 0);
+                }
+            }
+        }
+
+        //Helper-class to get enums
+        public static IReadOnlyList<T> GetValues<T>() 
+        { 
+            return (T[])Enum.GetValues(typeof(T)); 
+        }
+
+        private void CountTiresInDb()
+        {
+            var model = db.Vehicles.ToList();
+            int tires = 0;
+            foreach (Vehicle v in model)
+            {
+                tires += v.WheelCount;
+            }
+
+            ViewBag.Tires = tires;
+        }
+
+        private void CountColorOfTypesInDb()
+        {
+            var model = db.Vehicles.ToList();
+            Dictionary<string, int> colors = new Dictionary<string, int>();
+
+            foreach (Vehicle v in model)
+            {
+                if (colors.ContainsKey(v.Color))
+                {
+                    colors[v.Color] += 1;
+                }
+                else
+                {
+                    colors.Add(v.Color, 1);
+                }
+            }
+            ViewBag.Colors = colors;
+        }
+
+        private void CountMakeInDb()
+        {
+            var model = db.Vehicles.ToList();
+            Dictionary<string, int> makes = new Dictionary<string, int>();
+
+            foreach (Vehicle v in model)
+            {
+                if (makes.ContainsKey(v.Make))
+                {
+                    makes[v.Make] += 1;
+                }
+                else
+                {
+                    makes.Add(v.Make, 1);
+                }
+            }
+            ViewBag.Makes = makes;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
