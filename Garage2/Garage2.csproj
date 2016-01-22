@@ -135,10 +135,8 @@
       <DependentUpon>201601191542313_AddedRegistrationLength.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\SearchString.cs" />
     <Compile Include="Models\GarageContext.cs" />
-    <Compile Include="Models\SortElement.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Models\VehicleAttributes.cs" />

@@ -16,24 +16,9 @@ namespace Garage2.Controllers
     {
         private GarageContext db = new GarageContext();
 
-        //// GET: Vehicles
-        //public ActionResult Index()
-        //{
-        //    //IndexModel model = new IndexModel(db.Vehicles.ToList(), new SortElement());
-
-
-        //    //var data = db.Vehicles.ToList();
-
-        //    //var tupleModel = new Tuple<List<Vehicle>, SortElement>(data, new SortElement());
-
-        //    return View(db.Vehicles.ToList());
-        //}
-
-
+        // GET: Vehicles
         public ActionResult Index()
         {
-            //ViewBag.NameSortParm = sortOrder == "RegNum" ? "RegNum_desc" : "RegNum";
-
             var param = Request["sortOrder"];
             var list = db.Vehicles.Select(v => v);
 
@@ -62,7 +47,6 @@ namespace Garage2.Controllers
                         list = list.OrderBy(v => v.RegNum);
                         break;
                 }
-                ViewBag.SelectedOrder = param.ToString();
             }
             return View(list.ToList()   );
         }

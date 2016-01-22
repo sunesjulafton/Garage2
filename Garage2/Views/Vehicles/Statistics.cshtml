@@ -14,7 +14,7 @@
     @foreach (var item in ViewBag.Types)
     {
         <li>
-            @item.Key: @item.Value
+            @Html.Display(Model.GetDescription(Model.VehicleTypes.GetType(), Model.VehicleTypes))) : @item.Value
         </li>
     }
 </ul>
