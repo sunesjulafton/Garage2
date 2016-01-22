@@ -238,10 +238,11 @@ namespace Garage2.Utilities
                 {
                     rn += _regNumChars[_random.Next(_regNumChars.Length)];
                 }
-                for (int k = 0; k < 3; k++)
-                {
-                    rn += _random.Next(10);
-                }
+                rn += string.Format("{0:D3}", _random.Next(1000));
+                //for (int k = 0; k < 3; k++)
+                //{
+                //    rn += _random.Next(10);
+                //}
 
                 regNums.Add(rn);
             }
