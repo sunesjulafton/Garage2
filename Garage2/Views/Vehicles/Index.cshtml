@@ -72,6 +72,7 @@
 <div id="smallView">
     <form method="get">
         <select name="sortOrder" onchange="this.form.submit();">
+            <option selected hidden>Välj sorteringsordning</option>
             <option value="RegNum">Registreringsnummer</option>
             <option value="Type">Fordonstyp</option>
             <option value="Make">Märke</option>
@@ -80,10 +81,7 @@
             <option value="ArrivalTime">Ankomstid</option>
         </select>
     </form>
-    @*@Html.EnumDropDownListFor(model => model.Elements, htmlAttributes: new { @class = "form-control" })*@
-    @*@Html.ValidationMessageFor(model => model.VehicleAttributes, "", new { @class = "text-danger" })*@
-
-
+   
     @foreach (var item in Model)
     {
         <div class="well well-sm">

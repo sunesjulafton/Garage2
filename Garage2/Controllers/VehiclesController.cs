@@ -34,7 +34,6 @@ namespace Garage2.Controllers
         {
             //ViewBag.NameSortParm = sortOrder == "RegNum" ? "RegNum_desc" : "RegNum";
 
-            //var param = 
             var param = Request["sortOrder"];
             var list = db.Vehicles.Select(v => v);
 
