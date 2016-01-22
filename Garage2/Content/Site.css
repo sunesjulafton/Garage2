@@ -32,10 +32,10 @@ textarea {
 }
 
 @media screen and (max-width: 776px) {
-
-    #sortTable{
+    
+    /*#sortTable{
         display: none;
-    }
+    }*/
 
     /*.table{
         display: none;

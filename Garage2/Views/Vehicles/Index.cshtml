@@ -70,6 +70,18 @@
 
 
 <div id="smallView">
+    <form method="get">
+        <select name="sortOrder" onchange="this.form.submit();">
+            <option selected hidden>Välj sorteringsordning</option>
+            <option value="RegNum">Registreringsnummer</option>
+            <option value="Type">Fordonstyp</option>
+            <option value="Make">Märke</option>
+            <option value="Model">Modell</option>
+            <option value="Color">Färg</option>
+            <option value="ArrivalTime">Ankomstid</option>
+        </select>
+    </form>
+   
     @foreach (var item in Model)
     {
         <div class="well well-sm">
@@ -85,6 +97,7 @@
             @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
             @Html.ActionLink("Kör ut", "Delete", new { id = item.Id })
         </div>
+
     }
 </div>
 
