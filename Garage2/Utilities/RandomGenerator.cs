@@ -54,7 +54,7 @@ namespace Garage2.Utilities
 
         private IReadOnlyDictionary<string, List<string>> _busses = new Dictionary<string, List<string>> {
             { "Neoplan", new List<string> { "Jetliner", "Cityliner", "Skyliner", "Tourliner" } },
-            { "Scania", new List<string> { "Scania Irizar i6", "Scania Touring", "Scania Van Hool TDX 27 Astromega", "Scania Van Hool TX16" } },
+            { "Scania", new List<string> { "Irizar i6", "Touring", "Van Hool TDX 27 Astromega", "Van Hool TX16" } },
             { "Setra", new List<string> { "ComfortClass S 511 HD", "ComfortClass S 515 HD", "ComfortClass S 515 MD", "MultiClass S 412 UL",
                                           "MultiClass S 415 H", "MultiClass S 415 LE business", "MultiClass S 415 UL", "MultiClass S 415 UL business",
                                           "MultiClass S 416 UL business", "TopClass S 515 HDH" } },

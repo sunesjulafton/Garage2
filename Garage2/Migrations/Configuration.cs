@@ -34,7 +34,7 @@ namespace Garage2.Migrations
             //    );
             //
 
-            int count = 1000;
+            int count = 100;
             RandomGenerator randGen = new RandomGenerator();
 
             List<Tuple<string, string>> aeroplaneModels = randGen.AeroplaneModels(count / 5);
